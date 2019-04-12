@@ -20,7 +20,7 @@ to be done
 注：类似的命令，只要完成一个目录（目录中4个文件）和一个文件的拷贝就可以了。
 
 ##### ESPHome Yaml配置
-######灯带的配置
+【灯带的配置】
 ```yaml
 esphome:
   name: ......
@@ -61,10 +61,11 @@ light:
           lambda: |-
             music_leds.ShowFrame(MODE_SPECTRUM, &it);
 ```
-1.按照常规[fastled](https://esphome.io/components/light/fastled.html)灯带配置（支持3线与4线的各种灯带）
-2.在正常配置基础上，增加随音乐而动的`addressable_lambda`效果
+1. 在`esphome`域中增加包含`music_leds_esphome.h`文件
+2. 按照常规[fastled](https://esphome.io/components/light/fastled.html)灯带配置（支持3线与4线的各种灯带）
+3. 在正常配置基础上，增加随音乐而动的`addressable_lambda`效果
 
-######触摸按钮的配置
+【触摸按钮的配置】
 ```yaml
 esp32_touch:
 #  setup_mode: True
