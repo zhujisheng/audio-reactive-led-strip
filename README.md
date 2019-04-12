@@ -15,8 +15,11 @@ to be done
 ## ESPHome平台下的安装使用
 ##### 拷贝`music_leds_esphome.h`与`include`目录到ESPHome的配置目录中
 `git clone https://github.com/zhujisheng/audio-reactive-led-strip`
+
 `cp -r audio-reactive-led-strip/include/ ~/esphome-config/`
+
 `cp audio-reactive-led-strip/music_leds_esphome.h ~/esphome-config/`
+
 注：类似的命令，只要完成一个目录（目录中4个文件）和一个文件的拷贝就可以了。
 
 ##### ESPHome Yaml配置
@@ -85,8 +88,11 @@ to-be-done
 
 ##### 拷贝`music_leds_arduino.ino`与`include`目录
 `git clone https://github.com/zhujisheng/audio-reactive-led-strip`
+
 `cp -r audio-reactive-led-strip/include/ ~/arduino_dir/`
+
 `cp audio-reactive-led-strip/music_leds_arduino.ino ~/arduino_dir/`
+
 注：类似的命令，只要完成一个目录（目录中4个文件）和一个文件的拷贝就可以了。
 
 ##### 编译上传
