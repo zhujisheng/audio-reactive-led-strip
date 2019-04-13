@@ -27,6 +27,7 @@ light:
     pin: GPIO21
     #data_pin: GPIO21
     #clock_pin: GPIO17
+    # If you change the num_leds, you should change the N_PIXELS defined in music_leds_esphome.h corresponding
     num_leds: 60
     #rgb_order: BGR
     name: "MUSIC LEDS"

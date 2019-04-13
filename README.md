@@ -25,6 +25,17 @@ to be done
 
 ##### ESPHome Yaml配置
 【灯带的配置】
+0. 在ESPHome中应用向导生成基础yaml配置文件
+1. 在yaml配置文件的`esphome`域中增加包含`music_leds_esphome.h`文件（如下面样例）
+2. 按照常规[fastled](https://esphome.io/components/light/fastled.html)灯带配置（支持3线与4线的各种灯带）
+3. 在正常配置基础上，增加随音乐而动的`addressable_lambda`效果
+4. 编译固件，上传。启动后，在HomeAssistant配置中接入。
+
+注：
+- 上传固件到ESP32开发板时，需要按住板上IO0按钮（或者boot按钮）。
+- 在供电不足时，上传后ESP32无法正常工作，增加电力供应即可。
+- 如果你修改配置中`num_leds`（灯带上led的数量），请同时修改`music_leds_esphome.h`文件中的`N_PIXELS`(缺省为60)
+
 ```yaml
 esphome:
   name: ......
@@ -65,11 +76,10 @@ light:
           lambda: |-
             music_leds.ShowFrame(MODE_SPECTRUM, &it);
 ```
-1. 在`esphome`域中增加包含`music_leds_esphome.h`文件
-2. 按照常规[fastled](https://esphome.io/components/light/fastled.html)灯带配置（支持3线与4线的各种灯带）
-3. 在正常配置基础上，增加随音乐而动的`addressable_lambda`效果
 
 【触摸按钮的配置】
+以下配置实现Touch Pad开关灯的效果。
+进一步的Touch Pad配置，参考：[https://esphome.io/components/binary_sensor/esp32_touch.html](https://esphome.io/components/binary_sensor/esp32_touch.html)
 ```yaml
 esp32_touch:
 #  setup_mode: True
@@ -84,17 +94,30 @@ binary_sensor:
 ```
 
 ## Arduino平台下的安装使用
-##### 在arduino中安装必要的库
-to-be-done
+##### 在arduino IDE中安装ESP32开发库
+![arduino esp32安装1](images/arduino-esp32-1.png)
+启动arduino IDE ,在首选项中添加ESP32开发板网址：`https://dl.espressif.com/dl/package_esp32_index.json`
 
-##### 拷贝`music_leds_arduino.ino`与`include`目录
+![arduino esp32安装2](images/arduino-esp32-2.png)
+添加完成之后，打开开发板管理器，搜索ESP32，安装即可，由于网络原因，可能需要多安装几次才能成功。
+
+##### 在arduino IDE中安装fastled库
+在菜单`项目` `加载库` `管理库……`中查找并安装最新版本的`fastled`。
+![arduino fastled安装](images/arduino-fastled.JPG)
+
+##### 克隆项目
 `git clone https://github.com/zhujisheng/audio-reactive-led-strip`
 
-`cp -r audio-reactive-led-strip/include/ ~/arduino_dir/`
-
-`cp audio-reactive-led-strip/music_leds_arduino.ino ~/arduino_dir/`
-
-注：类似的命令，只要完成一个目录（目录中4个文件）和一个文件的拷贝就可以了。
-
 ##### 编译上传
-to-be-done
+1. 在Arduino中打开`audio-reactive-led-strip.ino`
+2. 电脑USB口连接ESP32模块
+3. 在菜单`工具`中选择正确的开发板与端口（串口）
+![arduino-esp32配置](images/arduino-esp32-3.png)
+4. 编译上传即可
+5. 如果连接非三线60led的灯带，可以修改`audio-reactive-led-strip.ino`文件中的一些定义
+
+
+## 致谢
+本项目的实现参考项目[https://github.com/scottlawsonbc/audio-reactive-led-strip](https://github.com/scottlawsonbc/audio-reactive-led-strip)。但完全使用C++实现，运行硬件架构也更简洁（不需要带声音输入设备的PC或树莓派），并且能与HomeAssistant快速集成。
+
+本项目中应用的PCB板的设计与生产，由[徐和平](https://github.com/Zack-Xu)同学完成。
