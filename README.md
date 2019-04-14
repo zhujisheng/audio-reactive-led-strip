@@ -1,3 +1,4 @@
+# 项目正在开发进行中，敬请期待……
 # 音乐灯带
 音乐灯带实时跟随当前环境声音，在led灯带上展现不同的虚拟效果。
 程序基于ESP32模块，在Arduino或者[ESPHome](https://esphome.io/)平台上运行（ESPHome平台可方便接入[HomeAssistant](https://www.home-assistant.io)）。
@@ -24,7 +25,8 @@ to be done
 注：类似的命令，只要完成一个目录（目录中4个文件）和一个文件的拷贝就可以了。
 
 ##### ESPHome Yaml配置
-【灯带的配置】
+【配置灯带】
+
 0. 在ESPHome中应用向导生成基础yaml配置文件
 1. 在yaml配置文件的`esphome`域中增加包含`music_leds_esphome.h`文件（如下面样例）
 2. 按照常规[fastled](https://esphome.io/components/light/fastled.html)灯带配置（支持3线与4线的各种灯带）
@@ -77,9 +79,11 @@ light:
             music_leds.ShowFrame(MODE_SPECTRUM, &it);
 ```
 
-【触摸按钮的配置】
+【配置触摸按钮】
+
 以下配置实现Touch Pad开关灯的效果。
 进一步的Touch Pad配置，参考：[https://esphome.io/components/binary_sensor/esp32_touch.html](https://esphome.io/components/binary_sensor/esp32_touch.html)
+
 ```yaml
 esp32_touch:
 #  setup_mode: True

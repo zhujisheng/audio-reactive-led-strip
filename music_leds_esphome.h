@@ -3,17 +3,20 @@ using namespace esphome;
 
 #include "driver/i2s.h"
 #include <FastLED.h>
-#include "FFT.h"
-#include "VisualEffect.h"
+#include "includes/FFT.h"
+#include "includes/VisualEffect.h"
 
 enum PLAYMODE {MODE_SCROLL, MODE_ENERGY, MODE_SPECTRUM};
 
 class MusicLeds{
     private:
-        //N_PIXELS,灯带上LED的数量，必须为2的倍数
+        //N_PIXELS: The number of the LEDS on the led strip, must be even.
         static const uint16_t N_PIXELS = 60;
-        //MIN_VOLUME_THRESHOLD进行转换和显示的最低音量
+        //MIN_VOLUME_THRESHOLD: If the audio's volume is less than this number, the signal will not be processed.
         static constexpr float MIN_VOLUME_THRESHOLD = 0.0003;
+        //Microphone(type of PDM)'s WS Pin and DATA_IN Pin, connecting to GPIO
+        static const int PDM_WS_IO_PIN = 19;
+        static const int PDM_DATA_IN_PIN = 22;
 
         static const uint16_t BUFFER_SIZE = 512; 
         static const uint8_t N_ROLLING_HISTORY = 2;
@@ -30,13 +33,6 @@ class MusicLeds{
 
         i2s_port_t i2s_num = I2S_NUM_0; // i2s port number
         i2s_config_t i2s_config = {
-          /*
-          .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
-          .sample_rate = SAMPLE_RATE,
-          .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
-          .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
-          .communication_format = (i2s_comm_format_t)(I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_MSB),
-          */
           .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX | I2S_MODE_PDM),
           .sample_rate = SAMPLE_RATE,
           .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
@@ -51,9 +47,9 @@ class MusicLeds{
         i2s_pin_config_t pin_config = {
           //.bck_io_num = 18,
           .bck_io_num = -1,
-          .ws_io_num = 19,
+          .ws_io_num = PDM_WS_IO_PIN,
           .data_out_num = -1,
-          .data_in_num = 22
+          .data_in_num = PDM_DATA_IN_PIN
         };
 
         PLAYMODE CurrentMode = MODE_SCROLL;
@@ -65,10 +61,10 @@ class MusicLeds{
 };
 
 MusicLeds::MusicLeds(){
-    i2s_driver_install(i2s_num, &i2s_config, 0, NULL);
-    i2s_set_pin(i2s_num, &pin_config);
-    i2s_stop(i2s_num);
-    i2s_start(i2s_num);
+    i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
+    i2s_set_pin(I2S_NUM_0, &pin_config);
+    i2s_stop(I2S_NUM_0);
+    i2s_start(I2S_NUM_0);
     
     fft = new FFT(BUFFER_SIZE*N_ROLLING_HISTORY, N_MEL_BIN, MIN_FREQUENCY, MAX_FREQUENCY, SAMPLE_RATE, MIN_VOLUME_THRESHOLD);
     effect = new VisualEffect(N_MEL_BIN,N_PIXELS);
@@ -76,7 +72,7 @@ MusicLeds::MusicLeds(){
 }
 
 MusicLeds::~MusicLeds(){
-    i2s_stop(i2s_num);
+    i2s_stop(I2S_NUM_0);
     delete fft;
     delete effect;
 }
@@ -91,7 +87,7 @@ void MusicLeds::ShowFrame( PLAYMODE CurrentMode, light::AddressableLight *p_it){
             int16_t l[BUFFER_SIZE];
 
             unsigned int read_num;
-                i2s_read(i2s_num, l, BUFFER_SIZE * 2, &read_num, portMAX_DELAY);
+                i2s_read(I2S_NUM_0, l, BUFFER_SIZE * 2, &read_num, portMAX_DELAY);
           
             for(int i = 0; i < BUFFER_SIZE; i++) {
                 y_data[BUFFER_SIZE * (N_ROLLING_HISTORY - 1) + i] = l[i] / 32768.0;
