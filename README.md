@@ -107,15 +107,16 @@ binary_sensor:
 
 ## Arduino平台下的安装使用
 ##### 在arduino IDE中安装ESP32开发库
-![arduino esp32安装1](images/arduino-esp32-1.png)
+<img src="images/arduino-esp32-1.png" width="550">
+
 启动arduino IDE ,在首选项中添加ESP32开发板网址：`https://dl.espressif.com/dl/package_esp32_index.json`
 
-![arduino esp32安装2](images/arduino-esp32-2.png)
+<img src="images/arduino-esp32-2.png" width="550">
 添加完成之后，打开开发板管理器，搜索ESP32，安装即可，由于网络原因，可能需要多安装几次才能成功。
 
 ##### 在arduino IDE中安装fastled库
 在菜单`项目` `加载库` `管理库……`中查找并安装最新版本的`fastled`。
-![arduino fastled安装](images/arduino-fastled.JPG)
+<img src="images/arduino-fastled.JPG" width="550">
 
 ##### 克隆项目
 `git clone https://github.com/zhujisheng/audio-reactive-led-strip`
@@ -124,7 +125,7 @@ binary_sensor:
 1. 在Arduino中打开`audio-reactive-led-strip.ino`
 2. 电脑USB口连接ESP32模块
 3. 在菜单`工具`中选择正确的开发板与端口（串口）
-![arduino-esp32配置](images/arduino-esp32-3.png)
+<img src="images/arduino-esp32-3.png" width="550">
 4. 编译上传即可
 5. 如果连接非三线60led的灯带，可以修改`audio-reactive-led-strip.ino`文件中的一些定义
 
