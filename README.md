@@ -18,9 +18,7 @@ to be done
 
 并且能与nodemcu-32s方便对接。
 
-<img src="images/mic-module-1.jpg" width="200">
-<img src="images/mic-module-2.jpg" width="200">
-<img src="images/mic-nodemcu32s.jpg" width="400">
+<img src="images/mic-module-1.jpg" width="200"><img src="images/mic-module-2.jpg" width="200"><img src="images/mic-nodemcu32s.jpg" width="390">
 
 
 
