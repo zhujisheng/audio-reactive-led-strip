@@ -16,9 +16,9 @@ to be done
 #### 麦克风模块板与连接
 可以直接购买使用HAChina的麦克风模块板，其中包含：一个PDM数字麦克风，一个触摸按钮，方便连接灯带的接线柱。
 并且能与nodemcu-32s方便对接。
-![麦克风模块正面](images/mic-module-1.jpg)
-![麦克风模块反面](images/mic-module-2.jpg)
-![硬件实际连接图](images/mic-nodemcu32s.jpg)
+![麦克风模块正面](images/mic-module-1.jpg | width=100)
+![麦克风模块反面](images/mic-module-2.jpg | width=100)
+![硬件实际连接图](images/mic-nodemcu32s.jpg | width=100)
 
 
 ## ESPHome平台下的安装使用
