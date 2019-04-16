@@ -1,7 +1,7 @@
 esphome:
   name: ......
   platform: ESP32
-  board: ......
+  board: nodemcu-32s
   includes:
     - music_leds_esphome.h
 
