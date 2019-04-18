@@ -9,9 +9,16 @@ Real-time LED strip music visualization running on ESP32 based on Arduino or [ES
 to be done
 
 ## 硬件与连接
-#### 物理连接图
-<img src="images/hardware-connection.JPG" width="550">
-注：你可以修改其中的GPIO口，但请同时修改程序中的定义。
+#### 需要的硬件
+- Nodemcu 32S
+- HAChina的麦克风模块板
+- 可控灯带
+
+注：
+1. HAChina的麦克风模块板仅能与标准每边19针的Nodemcu 32s进行物理对接（因为针脚数量与次序）
+2. 如果不使用HAChina的麦克风模块板，需要自己连接麦克风（PDM型，如果采用I2S麦克风，需要修改程序）。
+3. 灯带控制使用FastLED库，它支持的可控灯带类型：
+https://github.com/FastLED/FastLED#supported-led-chipsets
 
 #### 麦克风模块板与连接
 可以直接购买使用HAChina的麦克风模块板，其中包含：一个PDM数字麦克风，一个触摸按钮，方便连接灯带的接线柱。
@@ -20,6 +27,10 @@ to be done
 
 <img src="images/mic-module-1.jpg" width="200"><img src="images/mic-module-2.jpg" width="200"><img src="images/mic-nodemcu32s.jpg" width="390">
 
+#### 物理连接图
+实际物理连接图如下
+<img src="images/hardware-connection.JPG" width="550">
+注：你可以修改其中的GPIO口，但请同时修改程序中的定义。
 
 
 ## ESPHome平台下的安装使用
@@ -127,7 +138,7 @@ binary_sensor:
 3. 在菜单`工具`中选择正确的开发板与端口（串口）
 <img src="images/arduino-esp32-3.png" width="550">
 4. 编译上传即可
-5. 如果连接非三线60led的灯带，可以修改`audio-reactive-led-strip.ino`文件中的一些定义
+5. 如果连接非三线60led的灯带，可以修改`audio-reactive-led-strip.ino`文件中的一些定义：`N_PIXELS`以及`FastLED.addLeds`调用
 
 
 ## 致谢
