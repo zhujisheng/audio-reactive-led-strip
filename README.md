@@ -35,9 +35,9 @@ https://github.com/FastLED/FastLED#supported-led-chipsets
 ##### 拷贝`music_leds_esphome.h`与`include`目录到ESPHome的配置目录中
 `git clone https://github.com/zhujisheng/audio-reactive-led-strip`
 
-`cp -r audio-reactive-led-strip/include/ ~/esphome-config/`
+`cp -r audio-reactive-led-strip/includes/ ~/esphome_config/`
 
-`cp audio-reactive-led-strip/music_leds_esphome.h ~/esphome-config/`
+`cp audio-reactive-led-strip/music_leds_esphome.h ~/esphome_config/`
 
 注：以上命令供参考。你只要将`includes`目录（目录中4个文件）和`music_leds_esphome.h`文件放置在ESPhome的配置目录即可。
 
