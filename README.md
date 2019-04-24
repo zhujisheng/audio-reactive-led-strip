@@ -11,17 +11,17 @@ Real-time LED strip music visualization running on ESP32 based on Arduino or [ES
 ## 硬件与连接
 #### 需要的硬件
 - Nodemcu 32S
-- HAChina的麦克风模块板
+- HAChina的麦克风扩展板
 - 可控灯带
 
 注：
-1. HAChina的麦克风模块板能与Nodemcu 32s直接进行物理对接
-2. 如果不使用HAChina的麦克风模块板，需要自己连接麦克风（PDM型，如果采用I2S麦克风，需要修改程序）。
+1. HAChina的麦克风扩展板能与Nodemcu 32s直接进行物理对接
+2. 如果不使用HAChina的麦克风扩展板，需要自己连接麦克风（PDM型，如果采用I2S麦克风，需要修改程序）。
 3. 灯带控制使用FastLED库，它支持的可控灯带类型：
 https://github.com/FastLED/FastLED#supported-led-chipsets
 
-#### 麦克风模块板与连接
-可以直接购买使用HAChina的麦克风模块板，其中包含：一个PDM数字麦克风，一个触摸按钮，方便连接灯带的接线柱。
+#### 麦克风扩展板与连接
+可以直接购买使用HAChina的麦克风扩展板，其中包含：一个PDM数字麦克风，一个触摸按钮，方便连接灯带的接线柱。
 
 它能与nodemcu-32s方便对接。
 
@@ -140,4 +140,4 @@ binary_sensor:
 ## 致谢
 本项目的实现参考项目[https://github.com/scottlawsonbc/audio-reactive-led-strip](https://github.com/scottlawsonbc/audio-reactive-led-strip)。但完全使用C++实现，运行硬件架构也更简洁（不需要带声音输入设备的PC或树莓派），并且能与HomeAssistant快速集成。
 
-本项目中应用的PCB板的设计与生产，由[徐和平](https://github.com/Zack-Xu)同学完成。
+本项目中应用的PCB板的设计与生产，由[Zack-Xu](https://github.com/Zack-Xu)同学完成。
