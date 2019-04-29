@@ -3,6 +3,8 @@ using namespace esphome;
 
 #include "driver/i2s.h"
 
+const uint16_t LISTEN_PORT = 3344;
+
 const uint16_t BUFFER_SIZE = 512;
 const uint16_t SAMPLE_RATE = 16000;
 
@@ -26,52 +28,54 @@ i2s_pin_config_t pin_config = {
 
 class MicrophoneSwitch : public Component, public switch_::Switch {
 
-    private:
-        const char * _server;
-        int _port;
-        bool _state;
-        WiFiClient client;
+private:
+    bool _state;
+    WiFiClient _client;
+    WiFiServer _server;
 
-    public:
-        MicrophoneSwitch(const char * server, int port){
-            _server = server;
-            _port = port;
-            _state = true;
-        }
+public:
+    MicrophoneSwitch(){
+        _state = true;
+    }
 
-        void setup() override {
-            i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
-            i2s_set_pin(I2S_NUM_0, &pin_config);
-            i2s_stop(I2S_NUM_0);
-            i2s_start(I2S_NUM_0);
-            write_state(_state);
-        }
+    void setup() override {
+        i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
+        i2s_set_pin(I2S_NUM_0, &pin_config);
+        i2s_stop(I2S_NUM_0);
+        i2s_start(I2S_NUM_0);
+        write_state(_state);
+    }
 
-        void write_state(bool state) override {
-            _state = state;
-        }
+    void write_state(bool state) override {
+        _state = state;
+        publish_state(state);
+    }
 
-        void loop() override {
-            if(_state && client.connected()){
-                int16_t l[BUFFER_SIZE];
-                unsigned int read_num;
-                i2s_read(I2S_NUM_0, l, BUFFER_SIZE*2, &read_num, portMAX_DELAY);
-                for (int i = 0; i < BUFFER_SIZE; i++)
-                    l[i] = (l[i]-966)*64;
-
-                client.write((uint8_t*)l,BUFFER_SIZE * 2);
+    void loop() override {
+        if(_state && !_client.connected()){
+            if(!_server){
+                _server.begin(LISTEN_PORT);
+                ESP_LOGD("custom","Waiting for connecting ...");
             }
-            else if(_state && !client.connected()){
-                ESP_LOGD("custom","Connectting to %s:%d\n",_server,_port);
-                if(client.connect(_server, _port))
-                    publish_state(true);
-                else
-                    delay(1000);
-            }
-            else if(!_state && client.connected()){
-                ESP_LOGD("custom","Disconnectting from %s:%d\n",_server,_port);
-                client.stop();
-                publish_state(false);
+            _client = _server.available();
+            if(_client.connected()){
+                ESP_LOGD("custom","Connected from %s",_client.remoteIP().toString().c_str());
             }
         }
+        else if(_state && _client.connected()){
+            int16_t l[BUFFER_SIZE];
+            unsigned int read_num;
+            i2s_read(I2S_NUM_0, l, BUFFER_SIZE*2, &read_num, portMAX_DELAY);
+            for (int i = 0; i < BUFFER_SIZE; i++)
+                l[i] = (l[i]-966)*64;
+
+            _client.write((uint8_t*)l,BUFFER_SIZE * 2);
+        }
+        else if(!_state){
+            if(_client.connected()){
+                ESP_LOGD("custom","Disconnected to %s",_client.remoteIP().toString().c_str());
+                _client.stop();
+            }
+        }
+    }
 };

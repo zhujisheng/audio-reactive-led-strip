@@ -1,0 +1,31 @@
+esphome:
+  name: distributed_microphone
+  platform: ESP32
+  board: nodemcu-32s
+  includes:
+    - distributed_microphone.h
+
+......
+
+switch:
+  - platform: custom
+    lambda: |-
+      auto my_custom_switch = new MicrophoneSwitch();
+      App.register_component(my_custom_switch);
+      return {my_custom_switch};
+    switches:
+      name: "RemoteMic"
+
+# a LED on GPIO17, optional for indicating microphone's state
+output:
+  - platform: ledc
+    id: mic_led
+    pin: GPIO17
+
+light:
+  - platform: monochromatic
+    name: "MicLight"
+    output: mic_led
+    default_transition_length: 0s
+    effects:
+      - strobe:
