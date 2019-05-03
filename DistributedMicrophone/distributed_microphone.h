@@ -5,7 +5,7 @@ using namespace esphome;
 
 const uint16_t LISTEN_PORT = 3344;
 
-const uint16_t BUFFER_SIZE = 512;
+const uint16_t BUFFER_SIZE = 1024;
 const uint16_t SAMPLE_RATE = 16000;
 
 i2s_config_t i2s_config = {
