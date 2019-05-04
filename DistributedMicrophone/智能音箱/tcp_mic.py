@@ -35,13 +35,14 @@ class TcpAudio(AudioSource):
 
         def read(self, size):
             try:
+                toread = size*self._SampleWidth
+                buffer = bytearray(toread)
+                view = memoryview(buffer)
+
                 if not self._connected:
                     self._socket.connect((self._MicIP,self._MicPort))
                     self._connected = True
 
-                toread = size*self._SampleWidth
-                buffer = bytearray(toread)
-                view = memoryview(buffer)
                 while toread:
                     nbytes = self._socket.recv_into(view, toread)
                     if nbytes==0:
