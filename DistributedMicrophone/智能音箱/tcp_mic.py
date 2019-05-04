@@ -47,7 +47,6 @@ class TcpAudio(AudioSource):
                     if nbytes==0:
                         self._socket.close()
                         self.SocketInit()
-                        #buffer = b'\x00'*size
                         break
                     view = view[nbytes:]
                     toread -= nbytes
@@ -55,7 +54,6 @@ class TcpAudio(AudioSource):
                 self._socket.close()
                 time.sleep(5)
                 self.SocketInit()
-                buffer = b'\x00'*size
 
             return buffer
 
