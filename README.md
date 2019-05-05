@@ -11,11 +11,11 @@ Real-time LED strip music visualization running on ESP32 based on Arduino or [ES
 ## 硬件与连接
 #### 需要的硬件
 - Nodemcu 32S
-- HAChina的麦克风扩展板
+- [HAChina的麦克风扩展板](https://lw.hachina.io/)
 - 可控灯带
 
 注：
-1. HAChina的麦克风扩展板能与Nodemcu 32s直接进行物理对接
+1. HAChina的麦克风扩展板能与Nodemcu 32s直接进行物理对接。[产品地址](https://lw.hachina.io/)
 2. 如果不使用HAChina的麦克风扩展板，需要自己连接麦克风（PDM型，如果采用I2S麦克风，需要修改程序）。
 3. 灯带控制使用FastLED库，它支持的可控灯带类型：
 https://github.com/FastLED/FastLED#supported-led-chipsets
