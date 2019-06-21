@@ -8,7 +8,9 @@ Real-time LED strip music visualization running on ESP32 based on Arduino or [ES
 
 ## 效果展现
 <img src="images/music_led_strip.gif" width="550">
+
 更多灯带视频参见[https://lw.hachina.io/](https://lw.hachina.io/)
+
 
 ## 硬件与连接
 #### 需要的硬件
