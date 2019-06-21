@@ -1,3 +1,5 @@
+[English](README.md)
+
 # 音乐灯带
 音乐灯带实时跟随当前环境声音，在led灯带上展现不同的虚拟效果。
 程序基于ESP32模块，在Arduino或者[ESPHome](https://esphome.io/)平台上运行（ESPHome平台可方便接入[HomeAssistant](https://www.home-assistant.io)）。
