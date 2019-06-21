@@ -5,8 +5,7 @@ Real-time LED strip music visualization running on ESP32, based on Arduino or [E
 
 ## Effect Show
 <img src="images/music_led_strip.gif" width="550">
-You can find more video on [https://lw.hachina.io](https://lw.hachina.io/)
-
+You can find more video on[ https://lw.hachina.io ](https://lw.hachina.io/)
 ## Hardware
 #### Hardware needed
 - Nodemcu 32S
