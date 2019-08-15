@@ -67,6 +67,10 @@ esphome:
   board: ......
   includes:
     - music_leds_esphome.h
+    - includes/FFT.h
+    - includes/ExpFilter.h
+    - includes/VisualEffect.h
+    - includes/gaussian_filter1d.h
 
 ......
 

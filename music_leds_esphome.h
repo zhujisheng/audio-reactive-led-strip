@@ -3,8 +3,8 @@ using namespace esphome;
 
 #include "driver/i2s.h"
 #include <FastLED.h>
-#include "includes/FFT.h"
-#include "includes/VisualEffect.h"
+#include "FFT.h"
+#include "VisualEffect.h"
 
 enum PLAYMODE {MODE_SCROLL, MODE_ENERGY, MODE_SPECTRUM};
 
