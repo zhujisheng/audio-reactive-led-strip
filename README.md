@@ -3,6 +3,12 @@
 # Music LED Strip
 Real-time LED strip music visualization running on ESP32, based on Arduino or [ESPHome](https://esphome.io/) platform（ESPHome can connect to [HomeAssistant](https://www.home-assistant.io) easily）.
 
+The Microphone Shield and Nodemcu 32s, can also be used as a remote microphone 
+of a intelligent audio device. Some projects related:
+
+- [Home Assistant Add-on: voice_assistant](https://github.com/zhujisheng/hassio-addons/tree/master/voice_assistant)
+- [remote microphone](https://github.com/zhujisheng/Home-Assistant-DIY/blob/master/%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3%EF%BC%8821-30%EF%BC%89/24.%E8%BF%9C%E7%A8%8B%E9%BA%A6%E5%85%8B%E9%A3%8E.pdf)
+
 ## Effect Show
 <img src="images/music_led_strip.gif" width="550">
 
