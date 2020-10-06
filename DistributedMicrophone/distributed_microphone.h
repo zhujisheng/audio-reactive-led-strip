@@ -3,6 +3,7 @@ using namespace esphome;
 
 #include "driver/i2s.h"
 
+#define MAX_CLIENTS 10
 const uint16_t LISTEN_PORT = 3344;
 
 const uint16_t BUFFER_SIZE = 1024;
@@ -30,7 +31,7 @@ class MicrophoneSwitch : public Component, public switch_::Switch {
 
 private:
     bool _state;
-    WiFiClient _client;
+    WiFiClient *_clients[MAX_CLIENTS] = { NULL };
     WiFiServer _server;
 
 public:
@@ -52,30 +53,51 @@ public:
     }
 
     void loop() override {
-        if(_state && !_client.connected()){
+        if (_state){
             if(!_server){
-                _server.begin(LISTEN_PORT);
+               _server.begin(LISTEN_PORT);
                 ESP_LOGD("custom","Waiting for connecting ...");
             }
-            _client = _server.available();
-            if(_client.connected()){
-                ESP_LOGD("custom","Connected from %s",_client.remoteIP().toString().c_str());
+            WiFiClient newClient = _server.available();
+            if (newClient) {
+                for (int i=0 ; i<MAX_CLIENTS ; ++i) {
+                    if (NULL==_clients[i]) {
+                        _clients[i] = new WiFiClient(newClient);
+                        ESP_LOGD("custom","Client No.%d, Connected from %s", i, _clients[i]->remoteIP().toString().c_str());
+                        break;
+                    }
+                }
             }
-        }
-        else if(_state && _client.connected()){
-            int16_t l[BUFFER_SIZE];
-            unsigned int read_num;
-            i2s_read(I2S_NUM_0, l, BUFFER_SIZE*2, &read_num, portMAX_DELAY);
-            for (int i = 0; i < BUFFER_SIZE; i++)
-                l[i] = (l[i]-966)*64;
+            for (int i=0 ; i<MAX_CLIENTS ; ++i) {
+                if(NULL != _clients[i]){
+                    if(_clients[i]->connected()){
+                        int16_t l[BUFFER_SIZE];
+                        unsigned int read_num;
+                        i2s_read(I2S_NUM_0, l, BUFFER_SIZE*2, &read_num, portMAX_DELAY);
+                        for (int i = 0; i < BUFFER_SIZE; i++)
+                            l[i] = (l[i]-966)*64;
+                        _clients[i]->write((uint8_t*)l,BUFFER_SIZE * 2);
+                    }
+                    else{
+                        ESP_LOGD("custom","Disconnected from client No.%d", i);
+                        _clients[i]->stop();
+                        delete _clients[i];
+                        _clients[i] = NULL;
+                    }
+                }
+            }
 
-            _client.write((uint8_t*)l,BUFFER_SIZE * 2);
         }
-        else if(!_state){
-            if(_client.connected()){
-                ESP_LOGD("custom","Disconnected to %s",_client.remoteIP().toString().c_str());
-                _client.stop();
+        else{
+            for (int i=0 ; i<MAX_CLIENTS ; ++i) {
+                if(NULL != _clients[i]){
+                    ESP_LOGD("custom","Disconnected to client No.%d(%s)", i, _clients[i]->remoteIP().toString().c_str());
+                    _clients[i]->stop();
+                    delete _clients[i];
+                    _clients[i] = NULL;
+                }
             }
         }
+        yield();
     }
 };
