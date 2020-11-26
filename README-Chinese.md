@@ -12,19 +12,17 @@ Real-time LED strip music visualization running on ESP32 based on Arduino or [ES
 - [远程麦克风](https://github.com/zhujisheng/Home-Assistant-DIY/blob/master/%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3%EF%BC%8821-30%EF%BC%89/24.%E8%BF%9C%E7%A8%8B%E9%BA%A6%E5%85%8B%E9%A3%8E.pdf)
 
 ## 效果展现
+
 <img src="images/music_led_strip.gif" width="550">
-
-更多灯带视频参见[https://lw.hachina.io/](https://lw.hachina.io/)
-
 
 ## 硬件与连接
 #### 需要的硬件
 - Nodemcu 32S
-- [HAChina的麦克风扩展板](https://lw.hachina.io/)
+- [HAChina的麦克风扩展板](https://item.taobao.com/item.htm?spm=2013.1.0.0.79a151cb3dCJf5&id=592861974901&scm=1007.12144.95220.42296_0_0&pvid=66038172-197b-4d87-a5ee-a8d90ff6b8a0&utparam=%7B%22x_hestia_source%22%3A%2242296%22%2C%22x_object_type%22%3A%22item%22%2C%22x_hestia_subsource%22%3A%22default%22%2C%22x_mt%22%3A0%2C%22x_src%22%3A%2242296%22%2C%22x_pos%22%3A1%2C%22wh_pid%22%3A-1%2C%22x_pvid%22%3A%2266038172-197b-4d87-a5ee-a8d90ff6b8a0%22%2C%22scm%22%3A%221007.12144.95220.42296_0_0%22%2C%22x_object_id%22%3A592861974901%7D)
 - 可控灯带
 
 注：
-1. HAChina的麦克风扩展板能与Nodemcu 32s直接进行物理对接。[产品地址](https://lw.hachina.io/)
+1. HAChina的麦克风扩展板能与Nodemcu 32s直接进行物理对接。[产品购买地址](https://item.taobao.com/item.htm?spm=2013.1.0.0.79a151cb3dCJf5&id=592861974901&scm=1007.12144.95220.42296_0_0&pvid=66038172-197b-4d87-a5ee-a8d90ff6b8a0&utparam=%7B%22x_hestia_source%22%3A%2242296%22%2C%22x_object_type%22%3A%22item%22%2C%22x_hestia_subsource%22%3A%22default%22%2C%22x_mt%22%3A0%2C%22x_src%22%3A%2242296%22%2C%22x_pos%22%3A1%2C%22wh_pid%22%3A-1%2C%22x_pvid%22%3A%2266038172-197b-4d87-a5ee-a8d90ff6b8a0%22%2C%22scm%22%3A%221007.12144.95220.42296_0_0%22%2C%22x_object_id%22%3A592861974901%7D)
 2. 如果不使用HAChina的麦克风扩展板，需要自己连接麦克风（PDM型，如果采用I2S麦克风，需要修改程序）。
 3. 灯带控制使用FastLED库，它支持的可控灯带类型：
 https://github.com/FastLED/FastLED#supported-led-chipsets

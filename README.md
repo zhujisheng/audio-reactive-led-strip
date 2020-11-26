@@ -12,20 +12,17 @@ of a intelligent audio device. Some projects related:
 ## Effect Show
 <img src="images/music_led_strip.gif" width="550">
 
-You can find more video on[ https://lw.hachina.io ](https://lw.hachina.io/)
-
-
 ## Hardware
 #### Hardware needed
 - Nodemcu 32S
-- [Microphone Shield of HAChina](https://lw.hachina.io/)
+- [Microphone Shield of HAChina](https://item.taobao.com/item.htm?spm=2013.1.0.0.79a151cb3dCJf5&id=592861974901&scm=1007.12144.95220.42296_0_0&pvid=66038172-197b-4d87-a5ee-a8d90ff6b8a0&utparam=%7B%22x_hestia_source%22%3A%2242296%22%2C%22x_object_type%22%3A%22item%22%2C%22x_hestia_subsource%22%3A%22default%22%2C%22x_mt%22%3A0%2C%22x_src%22%3A%2242296%22%2C%22x_pos%22%3A1%2C%22wh_pid%22%3A-1%2C%22x_pvid%22%3A%2266038172-197b-4d87-a5ee-a8d90ff6b8a0%22%2C%22scm%22%3A%221007.12144.95220.42296_0_0%22%2C%22x_object_id%22%3A592861974901%7D)
 - Led Strip
 
 Note:
 - The FastLED libary is used by the program, so the led strip we support is [the same as FastLED](https://github.com/FastLED/FastLED#supported-led-chipsets)
 
 #### Microphone Shield
-The [Microphone Shield of Hachina](https://lw.hachina.io/) includes a PDM microphone, an Touch Pad, post connectors(making connection to led strip easily).
+The [Microphone Shield of Hachina](https://item.taobao.com/item.htm?spm=2013.1.0.0.79a151cb3dCJf5&id=592861974901&scm=1007.12144.95220.42296_0_0&pvid=66038172-197b-4d87-a5ee-a8d90ff6b8a0&utparam=%7B%22x_hestia_source%22%3A%2242296%22%2C%22x_object_type%22%3A%22item%22%2C%22x_hestia_subsource%22%3A%22default%22%2C%22x_mt%22%3A0%2C%22x_src%22%3A%2242296%22%2C%22x_pos%22%3A1%2C%22wh_pid%22%3A-1%2C%22x_pvid%22%3A%2266038172-197b-4d87-a5ee-a8d90ff6b8a0%22%2C%22scm%22%3A%221007.12144.95220.42296_0_0%22%2C%22x_object_id%22%3A592861974901%7D) includes a PDM microphone, an Touch Pad, post connectors(making connection to led strip easily).
 
 The Microphone Shield can connect to  nodemcu-32s directly and easily.
 
