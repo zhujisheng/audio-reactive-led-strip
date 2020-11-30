@@ -54,6 +54,13 @@ public:
 
     void loop() override {
         if (_state){
+
+            int16_t l[BUFFER_SIZE];
+            unsigned int read_num;
+            i2s_read(I2S_NUM_0, l, BUFFER_SIZE*2, &read_num, portMAX_DELAY);
+            for (int i = 0; i < BUFFER_SIZE; i++)
+                l[i] = (l[i]-966)*64;
+
             if(!_server){
                _server.begin(LISTEN_PORT);
                 ESP_LOGD("custom","Waiting for connecting ...");
@@ -71,11 +78,6 @@ public:
             for (int i=0 ; i<MAX_CLIENTS ; ++i) {
                 if(NULL != _clients[i]){
                     if(_clients[i]->connected()){
-                        int16_t l[BUFFER_SIZE];
-                        unsigned int read_num;
-                        i2s_read(I2S_NUM_0, l, BUFFER_SIZE*2, &read_num, portMAX_DELAY);
-                        for (int i = 0; i < BUFFER_SIZE; i++)
-                            l[i] = (l[i]-966)*64;
                         _clients[i]->write((uint8_t*)l,BUFFER_SIZE * 2);
                     }
                     else{
