@@ -9,7 +9,7 @@ Real-time LED strip music visualization running on ESP32 based on Arduino or [ES
 注：本项目中的麦克风扩展版+Nodemcu32S，也可以作为智能音箱的远程麦克风使用。具体项目，请参见：
 
 - [Home Assistant Add-on: voice_assistant](https://github.com/zhujisheng/hassio-addons/tree/master/voice_assistant)
-- [远程麦克风](https://github.com/zhujisheng/Home-Assistant-DIY/blob/master/%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3%EF%BC%8821-30%EF%BC%89/24.%E8%BF%9C%E7%A8%8B%E9%BA%A6%E5%85%8B%E9%A3%8E.pdf)
+- [远程麦克风](https://github.com/zhujisheng/Home-Assistant-DIY/tree/master/12.%E6%99%BA%E8%83%BD%E9%9F%B3%E7%AE%B1DIY)
 
 ## 效果展现
 

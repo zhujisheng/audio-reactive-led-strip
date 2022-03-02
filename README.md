@@ -42,9 +42,9 @@ The programs running on ESP32 is compiled in [Arduino IDE](https://www.arduino.c
 
 - Where can I buy HaChina's Microphone Shield?
 
-    You can [buy it on taobao](https://item.taobao.com/item.htm?spm=a2oq0.12575281.0.0.72b71debDp3XOI&ft=t&id=592861974901).
+    You can [buy it on taobao](https://item.taobao.com/item.htm?spm=a2oq0.12575281.0.0.50111debXqKmfy&ft=t&id=670078491318).
 
-    Or if you are not in mainland China, you can email your needs information to <zhujisheng@gmail.com>.
+    Or if you are not in mainland China, you can email your needs information to <q648993779@gmail.com>.
 
 ## [Arduino IDE](https://www.arduino.cc/en/software)
 
